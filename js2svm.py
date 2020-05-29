@@ -17,7 +17,7 @@ def modelTrain():
 
 def modelLoad():
     print("Loading......\n")
-    latest_file = max(glob.glob('model_versions\*'), key=os.path.getctime)
+    latest_file = max(glob.glob('model_versions/*'), key=os.path.getctime)
     print("Latest file at : ", latest_file)
     return joblib.load(latest_file)
 
