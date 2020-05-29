@@ -5,7 +5,7 @@ from celery import Celery
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
-app.config.from_object("celeryconfig")
+app.config.from_object("multiscript_config")
 celery = Celery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'], broker=app.config['CELERY_BROKER_URL'])
 
 def result2output(result):

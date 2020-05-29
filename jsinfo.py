@@ -3,6 +3,7 @@ import pandas as pd
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from sklearn.preprocessing import StandardScaler
+
 #To avoid getting dataconverstion warnings
 import warnings
 from sklearn.exceptions import DataConversionWarning
@@ -16,8 +17,8 @@ def getdata(url):
     driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
 
     driver.get(url)
-    driver.execute_script(open("JS\jquery-3.5.1.js").read())
-    js_info = driver.execute_script(open("JS\SVMCSVtest.js").read())
+    driver.execute_script(open("js\jquery-3.5.1.js").read())
+    js_info = driver.execute_script(open("js\js_mc_nc.js").read())
 
     url_info_df = pd.DataFrame(js_info, columns = ["content", "tag", "awordlength", "noofwords", "avgwordlength", "avgsentencelength", "linkdensity", 
             "fontSize", "fontWeight", "left", "top", "width", "height", "text", "atext"]) 
@@ -31,7 +32,6 @@ def cleanData(url_info_df):
     text_list = url_info_df["text"].to_list()
     url_info_df = url_info_df.drop(['content', 'tag', 'text', 'atext'],axis=1)
     scaled_df = StandardScaler().fit_transform(url_info_df).tolist()
-
 
 def main(url):
     getdata(url)

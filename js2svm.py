@@ -1,28 +1,27 @@
 import os.path
 import glob
+import importlib
 import joblib
 import redis
 import pandas as pd
 import numpy as np
+from modeltrainer import trainingModel
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 
 def modelTrain():
-    global svclassifier
     print("Training......\n")
-    import trainModel
-    return trainModel.trainModel()
+    return trainingModel()
 
 def modelLoad():
-    global svclassifierL
     print("Loading......\n")
-    latest_file = max(glob.glob('Model Version\*'), key=os.path.getctime)
+    latest_file = max(glob.glob('model_versions\*'), key=os.path.getctime)
     print("Latest file at : ", latest_file)
     return joblib.load(latest_file)
 
-#Prints predicted main content from CSV
+#Prints predicted main content
 def predict(svm_classifier, scaled_df, text_list, meta_titles, meta_info):
     global predicted_content_type, main_content_text
 
@@ -46,7 +45,7 @@ def predict(svm_classifier, scaled_df, text_list, meta_titles, meta_info):
 def main(url, scaled_df, text_list, meta_titles, meta_info):
     print("\nRetrieving text data......\n")
 
-    if len(os.listdir('Model Version') ) == 0:
+    if len(os.listdir('model_versions/') ) == 0:
         print("Retraining SVM classifier.\n")
         predict(modelTrain(), scaled_df, text_list, meta_titles, meta_info)
     else: 
