@@ -106,7 +106,7 @@ function strlen(text){
 }
 
 row = [];
-row.push("NC", this.tagName, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, totalwordnum/250, "avgreadtime");
+row.push("NC", this.tagName, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, totalwordnum/arguments[0], "avgreadtime");
 col.push(row);
 
 return col;

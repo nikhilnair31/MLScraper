@@ -1,6 +1,6 @@
 import joblib
 import time
-import multiscript_config
+import multiscript_config as msc
 import pandas as pd
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
@@ -30,9 +30,9 @@ def cleandata(df):
     X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.10)
 
 def trainingModel():
-    ker = multiscript_config.SVM_KERNEL
-    class_weight = multiscript_config.SVM_CLASS_WEIGHTS
-    gamma = multiscript_config.SVM_GAMMA
+    ker = msc.SVM_KERNEL
+    class_weight = msc.SVM_CLASS_WEIGHTS
+    gamma = msc.SVM_GAMMA
     #print("\n", class_weight, "\t", ker.upper(), "\t", ker.upper(), "\n")
     getdata()
     svclassifier = SVC(kernel=ker, gamma=gamma, class_weight = class_weight)

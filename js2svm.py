@@ -36,7 +36,7 @@ def predict(svm_classifier, scaled_df, text_list, meta_titles, meta_info):
     if 'og:url' in meta_titles:
         main_content_text.append("\nOG:URL : "+meta_info[meta_titles.index('og:url')])
     if 'avgreadtime' in meta_titles:
-        main_content_text.append("\nAverage Read Time : "+ str(meta_info[meta_titles.index('avgreadtime')] ))
+        main_content_text.append("\nAverage Read Time : "+ str(meta_info[meta_titles.index('avgreadtime')]) + " minutes")
     main_content_text.append("\n<------------------------------------------------------------------------------------->\n")
     for i in range(len(text_list)):
         if(predicted_content_type[i] == 1):

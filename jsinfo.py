@@ -1,4 +1,5 @@
 import redis
+import multiscript_config as msc
 import pandas as pd
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -18,7 +19,7 @@ def getdata(url):
 
     driver.get(url)
     driver.execute_script(open("js\jquery-3.5.1.js").read())
-    js_info = driver.execute_script(open("js\js_mc_nc.js").read())
+    js_info = driver.execute_script(open("js\js_mc_nc.js").read(), msc.AVG_READ_SPEED)
 
     url_info_df = pd.DataFrame(js_info, columns = ["content", "tag", "awordlength", "noofwords", "avgwordlength", "avgsentencelength", "linkdensity", 
             "fontSize", "fontWeight", "left", "top", "width", "height", "text", "atext"]) 
