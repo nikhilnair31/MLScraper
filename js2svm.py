@@ -5,7 +5,7 @@ import joblib
 import redis
 import pandas as pd
 import numpy as np
-from modeltrainer import trainingModel
+from model_trainer import trainingModel
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split

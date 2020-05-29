@@ -11,7 +11,7 @@ celery = Celery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'], br
 def result2output(result):
    return render_template("output.html",result = result)
 
-@celery.task(name="flaskapp.jsdata2svm")
+@celery.task(name="flask_app.jsdata2svm")
 def jsdata2svm(url, scaled_df, text_list, meta_titles, meta_info):
    return js2svm.main(url, scaled_df, text_list, meta_titles, meta_info)
 
