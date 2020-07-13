@@ -5,7 +5,7 @@ Web Scraper built with Selenium to extract site data and run through an SVM clas
 First run `redis-server`. 
 Then run `flask_app.py`.
 Then run Celery worker using 
-`celery -A flask_app.celery worker --loglevel=info --config=celeryconfig --pool=eventlet`
+`celery -A flask_app.celery worker --loglevel=info --config=multiscript_config --pool=eventlet`
 
 ### To add data for training :
 Inject `js_click_content.js` in browser and manually select important text. 
